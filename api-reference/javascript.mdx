@@ -22,7 +22,7 @@ https://api.swanvision.ai
 
 ```javascript
 import Swan from "@swan-admin/swan-ai-measurements"
-  const swan = new Swan("your_access_key");
+const swan = new Swan("your_access_key");
 ```
 
 
@@ -69,8 +69,9 @@ swan.custom.createCustomer({name, store_url, location, email, emailsTier_1, emai
   Customer email Tier 2
 </ResponseField>
   <div className="code-main__sticky">
-   ```javascript
-   Example Request
+```javascript
+Example Request
+
 swan.custom.createCustomer({
       name: 'John Doe',
       store_url: 'https://example-store.com',
@@ -123,10 +124,11 @@ swan.custom.getCustomCustomerConfig(store_url)
  The URL of the store for which custom customer configuration is to be retrieved 
 </ResponseField>
 
-     ```javascript
-  Example Request
-      const store_url = "mystore.com";
-      swan.custom.getCustomCustomerConfig(store_url)
+```javascript
+Example Request
+
+const store_url = "mystore.com";
+swan.custom.getCustomCustomerConfig(store_url)
 ```
  
 
@@ -174,22 +176,6 @@ Response:
 
 ## Arguments
 <div className="code-main">
-<div className="code-main__left">
-<ArgumentList title="Arguments">
-  <ArgumentList.Item title="file (File)">The file to be uploaded </ArgumentList.Item>
-  <ArgumentList.Item title="scanId (UUID)">The scan ID associated with the file upload </ArgumentList.Item>
-  <ArgumentList title="arrayMetaData (object)">
-    Metadata associated with the file. It contains
-    <ArgumentList.Item title="clothes_fit (string)">Information about clothes fit.The possible values are be "0"(loose fit) and "1"(tight fit) </ArgumentList.Item>
-    <ArgumentList.Item title="focal_length (string)">The focal length of the device's camera, which used during scan </ArgumentList.Item>
-    <ArgumentList.Item title="height (string)">The height of the user in centimeters </ArgumentList.Item>
-    <ArgumentList.Item title="customer_store_url (string)">The URL of the customer's store </ArgumentList.Item>
-    <ArgumentList.Item title="gender (string)">The gender of the user. The possible values are male and female </ArgumentList.Item>
-    <ArgumentList.Item title="scan_type (string,optional)">The type of scan performed </ArgumentList.Item>
-    <ArgumentList.Item title="callback_url (string)">The URL to call back once the process is complete and must be in "https" </ArgumentList.Item>
-  </ArgumentList>
-</ArgumentList>
-</div>
 <ResponseField name="file" type="File" >
   The file to be uploaded
 </ResponseField>
@@ -219,13 +205,10 @@ The type of scan performed
 <ResponseField name="callback_url" type="string,optional" >
   The URL to call back once the process is complete and must be in "https"
 </ResponseField>
-
 </ResponseField>
-
-
 <div className="code-main__sticky">
     ```javascript
-    Example Request
+Example Request
 
 const arrayMetaData = [
             {gender:"men"},
@@ -267,15 +250,9 @@ Returns a Promise that resolves with a success message upon successful file uplo
 </div>
 
 ### Description:
+This method facilitates file upload using a multipart upload process. It accepts a file, metadata, scan ID, and access key as input parameters. Upon
+successful upload, it resolves with a success message.
 
-<div className="code-main">
-  <div className="code-main__left">
-    This method facilitates file upload using a multipart upload process. It
-    accepts a file, metadata, scan ID, and access key as input parameters. Upon
-    successful upload, it resolves with a success message.
-  </div>
-  <div className="code-main__sticky"></div>
-</div>
 
 </div>
 
@@ -305,9 +282,10 @@ swan.measurement.getMeasurementResult(scanId)
 The scan ID for which the measurement status is to be retrieved
 </ResponseField>
  ```javascript
-     Example Request
-    const scanId = 'your_scan_id';
-    swan.measurement.getMeasurementStatus(scanId)
+Example Request
+
+const scanId = 'your_scan_id';
+swan.measurement.getMeasurementStatus(scanId)
 ```
 
 
@@ -501,7 +479,6 @@ URL to which the try-on result or status will be sent as a callback
 
  ```javascript
 Example Request
-
 
 swa.tryon.handleTryOnSubmit({
 userEmail: 'user@example.com',
