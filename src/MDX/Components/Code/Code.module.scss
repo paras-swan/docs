@@ -1,0 +1,66 @@
+.container {
+  border-radius: var(--token-16);
+  overflow: hidden;
+  margin-bottom: var(--token-24);
+  position: relative;
+  & * {
+    color: var(--grey-00);
+    text-shadow: none;
+  }
+  & code {
+    border: none;
+    color: inherit;
+    font-size: 16px !important;
+    font-family: var(--font-switzer) !important;
+  }
+  & pre {
+  
+    margin: 0 !important;
+    &::-webkit-scrollbar {
+        height: 5px;
+        background-color: #c1c1c1;
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #464646;
+        border-radius: 10px;
+      }
+
+  }
+  &:hover {
+    .copyButton {
+      opacity: 1;
+    }
+  }
+ 
+}
+
+.copyButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  background: var(--grey-00);
+  top: var(--token-12);
+  right: var(--token-12);
+  width: var(--token-32);
+  height: var(--token-32);
+  border-radius: var(--token-16);
+  opacity: 0;
+  transition: 0.25s;
+  margin-top: 5px;
+  &:active {
+    transform: scale(0.9);
+  }
+}
+.copyButtonMain{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 0;
+    width: 100%;
+    text-align: left;
+    padding: 0 10px;
+
+}
+

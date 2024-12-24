@@ -1,33 +1,535 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: "Introduction"
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+Swan is an AI Fitting Room that lets shoppers size & try on clothes virtually. For clothing brands and online retailers, Swan powers completely personalised sales – increasing conversion & reducing expensive returns.
 
-## Welcome
+## Swan package
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+## Installation
+```javascript
+npm i @swan-admin/swan-ai-measurements
+```
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+## Base Url
+
+```javascript
+https://api.swanvision.ai
+```
+
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
-
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+```javascript
+mport Swan from "@swan-admin/swan-ai-measurements"
+  const swan = new Swan("your_access_key");
 ```
+
+
+The Swan API uses Access key to authenticate requests. You can view and manage your API keys in the Swan Dashboard.
+Your Access key carry many privileges, so be sure to keep them secure! Do not share your secret Access key in publicly accessible areas such as GitHub, client-side code, and so forth.
+## Customer 
+
+  
+##  Create Customer 
+<div>
+<div>
+<div className="code-main">
+  <div className="code-main__left">
+    <Callout>
+      <div>
+        Method: `createCustomer(
+        {(name, store_url, location, email, emailsTier_1, emailsTier_2)})`
+        Handles to register a customer.
+      </div>
+    </Callout>
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+<div className="code-main">
+  <div className="code-main__left">
+    <h5>Usage</h5>
+    ```javascript
+swan.custom.createCustomer({name, store_url, location, email, emailsTier_1, emailsTier_2})
+```
+     <ArgumentList title="Arguments">
+      <ArgumentList.Item title="name (string)">Customer name</ArgumentList.Item>
+      <ArgumentList.Item title="storeUrl (string)">store url</ArgumentList.Item>
+      <ArgumentList.Item title="location (string)">Country Code  </ArgumentList.Item>
+      <ArgumentList.Item title="email (string)">Customer email</ArgumentList.Item>
+      <ArgumentList.Item title="emailsTier_1 (string,optional)">Customer email Tier 1</ArgumentList.Item>
+      <ArgumentList.Item title="emailsTier_2 (string,optional)">Customer email Tier 2</ArgumentList.Item>
+    </ArgumentList>
+  </div>
+  <div className="code-main__sticky">
+   ```javascript
+   Example Request
+swan.custom.createCustomer({
+      name: 'John Doe',
+      store_url: 'https://example-store.com',
+      location: 'New York, USA',
+      email: 'john.doe@example.com',
+      emailsTier_1: ['manager@example.com', 'admin@example.com'],
+      emailsTier_2: ['support@example.com', 'helpdesk@example.com'],
+})
+```
+
+
+  </div>
+</div>
+<div className="code-main">
+<div className="code-main__left">
+## Response
+Returns a Promise that resolves with the HTTP response data containing the message that user was customer registered successfully.
+</div>
+<div className="code-main__sticky">
+ ```javascript
+ Response:
+  "message": "Customer registered successfully"
+```
+</div>
+</div>
+</div>
+ <div>
+
+
+## Customer Details
+
+
+<div className="code-main">
+  <div className="code-main__left">
+    <Callout>
+      <div>
+        Method: `getCustomCustomerConfig(store_url)` Retrieves custom customer
+        configuration for a specific store URL.
+      </div>
+    </Callout>
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+<div className="code-main">
+  <div className="code-main__left">
+    ## Usage
+     ```javascript
+swan.custom.getCustomCustomerConfig(store_url)
+```
+  </div>
+</div>
+
+   ## Arguments
+<div className="code-main">
+  <div className="code-main__left">
+    <ArgumentList title="Arguments">
+    <ArgumentList.Item title="store_url (string)">The URL of the store for which custom customer configuration is to be retrieved </ArgumentList.Item>
+    </ArgumentList>
+
+  </div>
+  <div className="code-main__sticky">
+     ```javascript
+ const store_url = "mystore.com";
+      swan.custom.getCustomCustomerConfig(store_url)
+```
+  </div>
+</div>
+
+<div className="code-main">
+<div className="code-main__left">
+## Response
+Returns a Promise that resolves with the HTTP response data containing the custom customer configuration upon successful
+retrieval.
+</div>
+<div className="code-main__sticky">
+```javascript
+  "hasCustomAddon": true,
+            "customerName": "Swan Store Staging",
+            "customerStoreUrl": "swanstorestaging.myshopify.com"
+```
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div>
+## Measurement
+
+<div >
+ ## File Upload
+
+
+<div className="code-main">
+  <div className="code-main__left">
+    <Callout>
+      <div>
+        Method: `uploadFile({(file, arrayMetaData, scanId)})` Uploads a file
+        using a multipart upload process.
+      </div>
+    </Callout>
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+<div className="code-main">
+  <div className="code-main__left">
+    ## Usage
+  
+    ```javascript
+ swan.fileUpload.uploadFile({ file, arrayMetaData, scanId })
+```
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+## Arguments
+<div className="code-main">
+<div className="code-main__left">
+<ArgumentList title="Arguments">
+  <ArgumentList.Item title="file (File)">The file to be uploaded </ArgumentList.Item>
+  <ArgumentList.Item title="scanId (UUID)">The scan ID associated with the file upload </ArgumentList.Item>
+  <ArgumentList title="arrayMetaData (object)">
+    Metadata associated with the file. It contains
+    <ArgumentList.Item title="clothes_fit (string)">Information about clothes fit.The possible values are be "0"(loose fit) and "1"(tight fit) </ArgumentList.Item>
+    <ArgumentList.Item title="focal_length (string)">The focal length of the device's camera, which used during scan </ArgumentList.Item>
+    <ArgumentList.Item title="height (string)">The height of the user in centimeters </ArgumentList.Item>
+    <ArgumentList.Item title="customer_store_url (string)">The URL of the customer's store </ArgumentList.Item>
+    <ArgumentList.Item title="gender (string)">The gender of the user. The possible values are male and female </ArgumentList.Item>
+    <ArgumentList.Item title="scan_type (string,optional)">The type of scan performed </ArgumentList.Item>
+    <ArgumentList.Item title="callback_url (string)">The URL to call back once the process is complete and must be in "https" </ArgumentList.Item>
+  </ArgumentList>
+</ArgumentList>
+</div>
+<div className="code-main__sticky">
+    ```javascript
+    Example Request
+const arrayMetaData = [
+            {gender:"men"},
+            {focal_length: "23.57"},
+            {height: "180"},
+            {customer_store_url: "example.com"},
+            {clothes_fit:"0"},
+            {scan_type: "clothing_scan"},
+            {callback_url:"https://example.com/webhook"}
+];
+const videoFile = new File(recordedChunks, 'your_scan_id'.webm, {
+            type: recordedChunks.type,
+});
+const fileData = {
+            file: videoFile,
+            arrayMetaData,
+            scanId: 'your_scan_id',
+            email:"your@example.com
+};
+
+swan.fileUpload.uploadFile(fileData)
+```
+</div>
+</div>
+
+<div className="code-main">
+<div className="code-main__left">
+## Response
+Returns a Promise that resolves with a success message upon successful file upload.
+</div>
+<div className="code-main__sticky">
+ ```javascript
+{ 
+          message: "file uploaded successfully" 
+}
+```
+</div>
+</div>
+
+Description:
+
+<div className="code-main">
+  <div className="code-main__left">
+    This method facilitates file upload using a multipart upload process. It
+    accepts a file, metadata, scan ID, and access key as input parameters. Upon
+    successful upload, it resolves with a success message.
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+</div>
+
+<div >
+## Status
+
+<div className="code-main">
+  <div className="code-main__left">
+    <Callout>
+      <div>
+        Method: `getMeasurementResult(scanId)` Retrieves the measurement status
+        for a specific scan ID.
+      </div>
+    </Callout>
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+<div className="code-main">
+  <div className="code-main__left">
+    ## Usage
+
+     ```javascript
+swan.measurement.getMeasurementResult(scanId)
+```
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+<div className="code-main">
+<div className="code-main__left">
+<ArgumentList title="Arguments">
+  <ArgumentList.Item title="scanId (UUID)">The scan ID for which the measurement status is to be retrieved </ArgumentList.Item>
+</ArgumentList>
+</div>
+<div className="code-main__sticky">
+
+     ```javascript
+    const scanId = 'your_scan_id';
+            swan.measurement.getMeasurementStatus(scanId)
+```
+</div>
+</div>
+
+<div className="code-main">
+<div className="code-main__left">
+## Response
+Returns a Promise that resolves with the HTTP response data containing the measurement status with all the measurement points upon successful retrieval.
+</div>
+<div className="code-main__sticky">
+
+ ```javascript
+    
+{
+            "id": "0010101001010111000",
+            "isMeasured": true,
+            "across_back_shoulder": "42.724",
+            "ankle": "30.252",
+            "arm_length": "68.285",
+            "bust": "106.019",
+            "calf": "44.016",
+            "elbow": "29.469",
+            "forearm": "27.995",
+            "high_hip": "107.856",
+            "hip": "114.894",
+            "inseam": "90.653",
+            "knee": "43.459",
+            "nape_to_waist": "58.916",
+            "neck_base": "40.103",
+            "neck_circ": "38.579",
+            "seat": "70.187",
+            "thigh": "68.854",
+            "waist": "96.957",
+            "wrist": "18.306",
+            "bicep": "35.085",
+            "head": "61.470",
+            "inseam_to_ankle": "84.670",
+            "shoulder": "19.143",
+            "torso": "94.327",
+            "under_bust": "104.408",
+            "waist_bellybutton": null
+}
+```
+</div>
+</div>
+
+<h5>Description:</h5>
+<div className="code-main">
+  <div className="code-main__left">
+    This method retrieves the measurement status for a specific scan ID. It constructs the URL with the provided scan ID, sends a GET request to the
+    server, and returns the response containing the measurement status with all the measurement points.
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+</div>
+</div>
+
+<div>
+<h5 className="custom-title" id="js-try-on">Tryon</h5>
+
+<div >
+ ## File Upload
+
+<div className="code-main">
+  <div className="code-main__left">
+    <Callout>
+      <div>
+        Method: `uploadFile({(files, userEmail, fileNoLimit)})` Handles file
+        upload for try on.
+      </div>
+    </Callout>
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+<div className="code-main">
+  <div className="code-main__left">
+    ## Usage
+
+ ```javascript 
+ swan.tryOn.uploadFile({ files, userEmail,fileNoLimit })
+ ```
+    
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+<div className="code-main">
+<div className="code-main__left">
+<ArgumentList title="Arguments">
+  <ArgumentList.Item title="userEmail (string)">The email of the user</ArgumentList.Item>
+  <ArgumentList.Item title="files (array)">An array containing the files to be uploaded </ArgumentList.Item>
+  <ArgumentList.Item title="fileNoLimit (number,optional)">The maximum number of files allowed to be uploaded. If not provided, it defaults to the backend-defined limit </ArgumentList.Item>
+</ArgumentList>
+</div>
+<div className="code-main__sticky">
+
+ ```javascript
+
+const files = [
+{ name: 'file1.jpg', ... },
+{ name: 'file2.png', ... },
+];
+const userId = 'yourname@example.com';
+swa.tryon.uploadFile({
+files: files,  
+ userEmail: 'user@example.com',  
+ fileNoLimit: 2,
+})
+
+```
+</div>
+</div>
+
+<div className="code-main">
+<div className="code-main__left">
+## Response
+Returns a Promise that resolves with a success message upon successful upload, or rejects with an error if the upload fails.
+</div>
+<div className="code-main__sticky">
+
+ ```javascript
+"uploaded successfully!"
+
+```
+</div>
+</div>
+
+<h5>Description:</h5>
+<div className="code-main">
+  <div className="code-main__left">
+    This method uploads files to a remote storage location asynchronously.
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+<div className="code-main">
+  <div className="code-main__left">
+    ## Note:
+    <ul>
+      <li>
+        The method first constructs a payload object containing the user email
+        and the names of the files to be uploaded.
+      </li>
+      <li>
+        It then obtains signed URLs for uploading each file using the
+        getSignedUrl method internally.
+      </li>
+      <li>
+        Finally, it uploads each file to its corresponding signed URL using the
+        s3Upload method internally.
+      </li>
+      <li>
+        If any step fails, it rejects the promise with the encountered error.
+      </li>
+    </ul>
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+</div>
+<div >
+## Try-on Submit
+
+<div className="code-main">
+  <div className="code-main__left">
+    <Callout>
+      <div>Method: `handleTryOnSubmit({userEmail,shopDomain,productName,selectedUserImages,requestSource,callbackUrl})` Handles the try-on submission process by sending user-selected images for the try-on process.</div>
+    </Callout>
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+<div className="code-main">
+  <div className="code-main__left">
+    ## Usage
+    
+ ```javascript
+    swan.tryOn.handleTryOnSubmit({userEmail,shopDomain,productName,selectedUserImages,requestSource,callbackUrl})
+    ```
+  </div>
+  <div className="code-main__sticky"></div>
+</div>
+
+<div className="code-main">
+<div className="code-main__left">
+<ArgumentList title="Arguments">
+  <ArgumentList.Item title="userEmail (string)">The email of the user</ArgumentList.Item>
+  <ArgumentList.Item title="shopDomain (string)">The domain of the store where the try-on is being initiated </ArgumentList.Item>
+  <ArgumentList.Item title="productName (string)">The name of the product the user wants to try on </ArgumentList.Item>
+  <ArgumentList.Item title="selectedUserImages (array)">Names of the images selected by the user for the try-on process. </ArgumentList.Item>
+  <ArgumentList.Item title="requestSource (string,optional)">The source from which the try-on request is being made (e.g., 'web', 'mobile') </ArgumentList.Item>
+  <ArgumentList.Item title="callbackUrl (string,optional)">URL to which the try-on result or status will be sent as a callback </ArgumentList.Item>
+</ArgumentList>
+</div>
+<div className="code-main__sticky">
+
+ ```javascript
+
+swa.tryon.handleTryOnSubmit({
+userEmail: 'user@example.com',
+shopDomain: 'example.com',
+productName: 'Cool Shirt',
+selectedUserImages: ['image1.jpg', 'image2.jpg'],
+requestSource: 'web',
+callbackUrl: 'https://example.com/callback',
+})
+
+```
+</div>
+</div>
+
+<div className="code-main">
+<div className="code-main__left">
+## Response
+The function returns a promise that resolves with a response containing important details about the try-on process. This includes the tryonId, indicating the unique identifier for the try-on session, the tryOnProcessStatus, which reflects the current status of the process (e.g., "in-progress"), the customerStoreUrl, representing the store URL, the productName, specifying the name of the product, and the userEmail, denoting the email address associated with the try-on request.
+</div>
+<div className="code-main__sticky">
+
+ ```javascript
+
+{
+"tryonId": "6547e8b3-a856-48d5-a14c-c6bda323f3f3",
+"tryOnProcessStatus": "in-progress",
+"customerStoreUrl": "swan-try-on.myshopify.com",
+"productName": "Cool Shirt",
+"userEmail": "user@example.com"
+}
+
+```
+</div>
+</div>
+
+
+## Description
+
+  This function submits the try-on request by sending the user's selected images and product information. It also allows specifying the callback URL to receive the try-on process result or updates.
+  
+
+</div>
+</div>

@@ -1,0 +1,99 @@
+---
+title: "Models"
+--- 
+
+Swan builds state-of-the-art deep generative models to bring the fitting room experience online. We process multiple sources of information like videos, images, camera parameters, garment, and personal information to deliver both a powerful and personal experience for online shoppers. All our models are trained and validated in-house with custom curated datasets to achieve maximum accuracy in predictions. Swan takes privacy seriously: all data is encrypted and never shared with third parties.
+
+## Lee & Yves
+
+We have two live models, named in homage to Alexandre McQueen and Yves Saint Laurent. They can be used independently or paired for a full fitting room with size and fit.
+
+- **Yves**: Highly accurate body measurements from video or multiple images.
+- **Lee**: Photorealistic virtual try-on from product and person images.
+
+
+
+## Yves - Sizing
+
+A one-hundred-million-parameter sizing model that receives a phone model and metadata, a person's height and a spin video or images and calculates the person’s measurements at different body parts. Trained on a large and representative dataset of scans and further fine-tuned with human expert inputs to match the distribution of tailors
+
+Benchmarked against tailors and dressmakers to within 1 cm. The model allows for both form fitting and slightly loose clothing for greater ease of use against clothing artifacts. Optionally, our intelligent pose guidance system can detect a person in real-time and offer direct feedback to guide a user through their scan.
+
+
+## Lee - Try-on
+
+A one-billion-parameter diffusion model trained with our custom dataset and enhancements. Yves requires a person’s posed image and a ghost/layflat image of a garment and outputs a reimagined image of the person wearing the garment while respecting their original pose. Trained on a large and varied dataset with support for any kind of base, middle, or outer layer clothing.
+
+
+## Key Features
+
+- **Any phone/image**: Yves works with any phone model, while Lee can process images with any pose of a single person.
+- **Anywhere**: Handles low light, complex backgrounds, varied light sources, lens warping, and more.
+- **Anyone**: Designed for flexibility in usage and interaction.
+
+
+
+## Model Recommendations
+
+## Sizing
+
+We recommend Yves, which is paired with sizing suggestions to deliver personalized sizing suggestions based on the shopper and the garment they are viewing. Yves without sizing suggestions is great for custom clothing and medical/fitness applications which require precise body measurements.
+
+## Try-on
+
+We recommend Lee is paired with Yves to allow for greater try-on accuracy based on sizing meshes. However, in the case where sizing data (tech packs & fit models) are hard to acquire, Lee performs well on its own.
+
+  <div className="table-responsive">
+  <table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Yves</th>
+            <th>Lee</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Inputs</td>
+            <td>
+                1- 8 viewpoint images, OR video, OR camera stream<br/>
+                2- camera focal length OR phone model<br/>
+                3- height<br/>
+                4- form-fitted clothing or not
+            </td>
+            <td>1- One or more person images;<br/>2- Garment image (Ghost or Lay flat)</td>
+       </tr>
+        <tr>
+            <td>Parameter count</td>
+            <td>100 million</td>
+            <td>1 billion</td>
+        </tr>
+        <tr>
+            <td>Run time</td>
+            <td>Depending on the input ~1 minute</td>
+            <td>~15 seconds</td>
+        </tr>
+        <tr>
+            <td>Output</td>
+            <td>
+                1- 25 measurements across different body parts<br/>
+                2- Sizing suggestions predicted on garment measurements
+            </td>
+            <td>One image of the person in the same posing wearing the garment.</td>
+        </tr>
+        <tr>
+            <td>Cost</td>
+            <td>€1.75 per scan<br/>€0.05 per sizing suggestion</td>
+            <td>€0.85 per Try-On</td>
+        </tr>
+        <tr>
+            <td>Accuracy</td>
+            <td>&lt;1cm</td>
+            <td>Aaa on VITON-HD<br/>BBB on dresscode</td>
+        </tr>
+    </tbody>
+</table>
+
+  </div>
+
+ 
