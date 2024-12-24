@@ -1,0 +1,25 @@
+.container {
+  border: 1px solid var(--grey-400);
+  margin-bottom: var(--token-24);
+  padding: var(--token-20);
+  background: var(--grey-300);
+  border-radius: var(--token-16);
+  display: flex;
+  gap: var(--token-08);
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    height: 5px;
+    background-color: #c1c1c1;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #464646;
+    border-radius: 10px;
+  }
+  & p {
+    margin-bottom: 0;
+  }
+  & svg {
+    transform: scale(0.8);
+  }
+}

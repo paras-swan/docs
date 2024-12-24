@@ -1,0 +1,19 @@
+.item {
+  padding: var(--token-08) 0;
+  border-bottom: 1px solid var(--grey-300);
+  &:first-of-type {
+    border-top: 1px solid var(--grey-300);
+  }
+}
+
+.argumentTitle {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.argumentDescription {
+  font-size: 16px;
+  & p {
+    margin-bottom: 0;
+  }
+}
