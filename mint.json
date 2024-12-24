@@ -27,18 +27,18 @@
   },
   "tabs": [
     {
-      "name": "API Reference",
+      "name": "Reference",
       "url": "api-reference"
     }
   ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    }
-  ],
+  
   "navigation": [
+    {
+      "group": "",
+      "pages": [
+        "home"
+      ]
+    },
     {
       "group": "Get Started",
       "pages": [
@@ -56,9 +56,9 @@
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "Client-side SDKs",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/javascript"
       ]
     }
   ],
